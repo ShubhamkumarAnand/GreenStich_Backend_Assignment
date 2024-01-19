@@ -19,13 +19,13 @@ public class User {
 
     @Id
     @SequenceGenerator(
-            name = "book_sequence",
-            sequenceName = "book_sequence",
+            name = "user_sequence",
+            sequenceName = "user_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "book_sequence"
+            generator = "user_sequence"
     )
     @Column(
             name = "user_id",
@@ -58,4 +58,52 @@ public class User {
             columnDefinition = "TEXT"
     )
     private String email;
+
+    public User(String fullName, String password, String email) {
+        this.fullName = fullName;
+        this.password = password;
+        this.email = email;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id=" + Id +
+                ", fullName='" + fullName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
