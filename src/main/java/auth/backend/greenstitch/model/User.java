@@ -4,17 +4,21 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 
 @Entity(name = "User")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "user", uniqueConstraints = {
-        @UniqueConstraint(name = "user_email_unique", columnNames = "email")
+        @UniqueConstraint(
+                name = "user_email_unique",
+                columnNames = "user_email"
+        )
 })
+@Getter
+@Setter
+@ToString
 public class User {
 
     @Id
@@ -31,7 +35,7 @@ public class User {
             name = "user_id",
             updatable = false
     )
-    private Long Id;
+    private Long id;
 
     @Size(min = 3,max = 20 , message = "Must be between 3 and 20 character long.")
     @Column(
@@ -43,7 +47,9 @@ public class User {
 
     @Pattern(
             regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
-            message = "Password must contain at least 8 characters, including at least one digit, one lowercase letter, one uppercase letter, and one special character."
+            message = "Password must contain at least 8 characters," +
+                    " including at least one digit, one lowercase letter," +
+                    " one uppercase letter, and one special character."
     )
     @Column(
             name = "password",
@@ -53,8 +59,7 @@ public class User {
     private String password;
 
     @Email(message = "Enter a valid Email.")
-    @Column(
-            name = "email",
+    @Column(name = "user_email",
             columnDefinition = "TEXT"
     )
     private String email;
@@ -65,45 +70,6 @@ public class User {
         this.email = email;
     }
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "Id=" + Id +
-                ", fullName='" + fullName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public User() {
     }
 }

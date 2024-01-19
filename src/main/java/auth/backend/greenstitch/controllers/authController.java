@@ -5,6 +5,7 @@ import auth.backend.greenstitch.payload.request.LoginRequest;
 import auth.backend.greenstitch.payload.request.SignUpRequest;
 import auth.backend.greenstitch.payload.response.MessageResponse;
 import auth.backend.greenstitch.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,10 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 public class authController {
+    @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
     UserRepository userRepository;
 
+    @Autowired
     PasswordEncoder passwordEncoder;
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Validated @RequestBody SignUpRequest signUpRequest) {
@@ -46,6 +50,8 @@ public class authController {
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        User user = userRepository.findByEmail(loginRequest.getEmail());
 
         return ResponseEntity.ok(new MessageResponse("User Signed In Successfully"));
     }
