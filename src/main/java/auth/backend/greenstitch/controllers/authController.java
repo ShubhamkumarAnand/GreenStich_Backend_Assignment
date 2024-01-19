@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 public class authController {
 
-    @PostMapping("/sign-up")
+    @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Validated @RequestBody SignUpRequest signUpRequest) {
         return ResponseEntity.ok(new MessageResponse("User Registered Successfully"));
     }
 
-    @PostMapping("/log-in")
+    @PostMapping("/login")
     public ResponseEntity<?> loginUser(@Validated @RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(new MessageResponse("User Signed In Successfully"));
     }
 
-    @PostMapping("/log-out")
+    @PostMapping("/logout")
     public ResponseEntity<?> logoutUser() {
         return ResponseEntity.ok(new MessageResponse("User Logged Out Successfully"));
     }

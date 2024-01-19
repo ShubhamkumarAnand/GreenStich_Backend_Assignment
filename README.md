@@ -5,8 +5,9 @@ H2 database & spring boot as the backend framework.
 
 ## Installation and Setup
 
-```
 ### Prerequisites
+
+```
 - Java Development Kit (JDK) 8 or later
 - Maven
 - Postman (for testing the API)
@@ -39,7 +40,7 @@ cd GreenStich_Backend_Assignment
 ### User Signup
 
 - Method: POST
-- Path: `http://localhost:8081/auth/app/signup`
+- Path: `http://localhost:8081/api/auth/signup`
 - Description: Register a new user.
 - Request Body: User data in the JSON format (e.g., name, email, password).
 
@@ -60,13 +61,12 @@ cd GreenStich_Backend_Assignment
     "password": "$2a$10$KVzpEHKFpX2ephA7RXLgqumnZKFy3bT8wdJMW3tYH2yqUJcpZPGSG",
     "email": "ska@gmail.com",
 }
-
 ```
 
 ### User Login
 
 - Method: GET
-- Path: `http://localhost:8081/signIn`
+- Path: `http://localhost:8081/api/auth/login`
 - Description: Authenticate a user and retrieve their details.
 - Authentication: Basic Authentication (Username and Password)
     - Username: [ska@gmail.com](mailto:ska@gmail.com)
@@ -80,7 +80,18 @@ cd GreenStich_Backend_Assignment
     "password": "$2a$10$KVzpEHKFpX2ephA7RXLgqumnZKFy3bT8wdJMW3tYH2yqUJcpZPGSG",
     "email": "ska@gmail.com",
 }
+```
 
+### User Logout
+
+- Method: GET
+- Path: `http://localhost:8081/api/auth/logout`
+- Description: Authenticate a user and retrieve their details.
+
+```json5
+{
+  "message": "User Logged Out Successfully"
+}
 ```
 
 ### Welcome, Endpoint (Requires Authentication)
@@ -96,6 +107,10 @@ cd GreenStich_Backend_Assignment
     - Bearer Token:
       eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTaGltYmh1Iiwic3ViIjoiSldUIFRva2VuIiwidXNlcm5hbWUiOiJza0BnbWFpbC5jb20iLCJyb2xlIjoiUk9MRV9VU0VSIiwiaWF0IjoxNjg1Njc3Mzg3LCJleHAiOjE2ODU3MDczODd9.VwM2IGD1fABjEcnNoMb4uIyBnYe3_BmZGx33dElaD-E
     - Response: Welcome to GreenSwitch
+
+```text
+Hello, From GreenSwitch
+```
 
 ### Tech Stack
 
@@ -124,7 +139,7 @@ The following validation rules are applied to the user entity:
 
 ### Development
 
-The project can be imported and run using an IDE - Intellij IDEA.
+The project can be imported and run using an IDE - Intellij IDEA Ultimate.
 
 ### Test API
 
